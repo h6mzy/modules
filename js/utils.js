@@ -36,9 +36,7 @@ export function formatDate(value, opts = {}) {
 export function startCountdown(target, { onTick, onEnd } = {}) {
   const t = typeof target === 'number' ? target : new Date(target).getTime();
 
-  const pad = n => String(n).padStart(2, '0');
-
-  function tick() {
+  const tick = () => {
     let diff = t - Date.now();
 
     if (diff <= 0) {
@@ -52,16 +50,11 @@ export function startCountdown(target, { onTick, onEnd } = {}) {
     const m = Math.floor(diff / 60000);    diff %= 60000;
     const s = Math.floor(diff / 1000);
 
-    onTick?.({
-      days: pad(d),
-      hours: pad(h),
-      minutes: pad(m),
-      seconds: pad(s)
-    });
-  }
+    onTick?.({ days: d, hours: h, minutes: m, seconds: s });
+  };
 
   tick();
   const id = setInterval(tick, 1000);
 
-  return () => clearInterval(id); // cleanup
+  return () => clearInterval(id); // 🔥 THIS is key
 }
