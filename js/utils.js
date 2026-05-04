@@ -45,6 +45,7 @@ export function startCountdown(target, { onTick, onEnd } = {}) {
 
     if (diff <= 0) {
       clearInterval(id);
+      onTick?.({ days: 0, hours: 0, minutes: 0, seconds: 0 });
       onEnd?.();
       return;
     }
