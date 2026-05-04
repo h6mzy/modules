@@ -34,7 +34,11 @@ export function formatDate(value, opts = {}) {
 }
 
 export function startCountdown(target, { onTick, onEnd } = {}) {
-  const t = typeof target === 'number' ? target : new Date(target).getTime();
+  const t = typeof target === 'number'
+    ? target
+    : new Date(target).getTime();
+
+  let id;
 
   const tick = () => {
     let diff = t - Date.now();
@@ -53,8 +57,9 @@ export function startCountdown(target, { onTick, onEnd } = {}) {
     onTick?.({ days: d, hours: h, minutes: m, seconds: s });
   };
 
-  tick();
-  const id = setInterval(tick, 1000);
+  tick(); // now safe
 
-  return () => clearInterval(id); // 🔥 THIS is key
+  id = setInterval(tick, 1000); // assign after
+
+  return () => clearInterval(id);
 }
