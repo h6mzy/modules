@@ -65,37 +65,43 @@ export default async function removeBackground(
   // ---- run segmentation (IMPORTANT: use bitmap) ----
   const result = seg.segment(bitmap);
 
-  // mask as image (NOT raw array)
-  const mask = result.categoryMask.toCanvasImageSource?.() 
-    || result.categoryMask;
-  
+  // create canvases
+  const imgCanvas = document.createElement('canvas');
   const maskCanvas = document.createElement('canvas');
+  
+  imgCanvas.width = width;
+  imgCanvas.height = height;
   maskCanvas.width = width;
   maskCanvas.height = height;
   
-  const mctx = maskCanvas.getContext('2d');
+  const imgCtx = imgCanvas.getContext('2d');
+  const maskCtx = maskCanvas.getContext('2d');
   
-  // draw mask scaled to output size
-  mctx.drawImage(mask, 0, 0, width, height);
+  // draw original image
+  imgCtx.drawImage(bitmap, 0, 0, width, height);
   
-  // get mask pixels
-  const maskData = mctx.getImageData(0, 0, width, height).data;
+  // get mask
+  const mask = result.categoryMask;
+  const maskData = mask.getAsFloat32Array();
   
-  // apply to image
-  const imageData = ctx.getImageData(0, 0, width, height);
-  const data = imageData.data;
+  // render mask as grayscale image
+  const maskImage = maskCtx.createImageData(width, height);
+  const data = maskImage.data;
   
-  for (let i = 0; i < width * height; i++) {
-    const alpha = maskData[i * 4]; // red channel
+  for (let i = 0; i < maskData.length; i++) {
+    const v = maskData[i] * 255;
   
-    const p = i * 4;
-  
-    if (alpha < 128) {
-      data[p + 3] = 0;
-    }
+    data[i * 4] = v;     // R
+    data[i * 4 + 1] = v; // G
+    data[i * 4 + 2] = v; // B
+    data[i * 4 + 3] = 255;
   }
   
-  ctx.putImageData(imageData, 0, 0);
+  maskCtx.putImageData(maskImage, 0, 0);
+  
+  // show both on page
+  document.body.appendChild(imgCanvas);
+  document.body.appendChild(maskCanvas);
 
   // ---- export blob ----
   return new Promise((resolve, reject) => {
