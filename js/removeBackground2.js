@@ -38,11 +38,13 @@ export default async function removeBackground(
   file,
   {
     maxWidth = 768,
-    quality = 0.9
+    quality = 0.9,
+    threshold = 0.5
   } = {}
 ) {
   const seg = await getSegmenter();
 
+  // ---- load image ----
   const bitmap = await createImageBitmap(file);
 
   // ---- resize for performance ----
@@ -56,10 +58,12 @@ export default async function removeBackground(
   canvas.height = height;
 
   const ctx = canvas.getContext('2d');
+
+  // draw resized image
   ctx.drawImage(bitmap, 0, 0, width, height);
 
-  // ---- run segmentation ----
-  const result = seg.segment(canvas);
+  // ---- run segmentation (IMPORTANT: use bitmap) ----
+  const result = seg.segment(bitmap);
 
   const mask = result.categoryMask;
   const maskData = mask.getAsFloat32Array();
@@ -67,19 +71,26 @@ export default async function removeBackground(
   const imageData = ctx.getImageData(0, 0, width, height);
   const data = imageData.data;
 
-  // ---- apply alpha mask ----
-  for (let i = 0; i < maskData.length; i++) {
+  // ---- apply mask safely ----
+  const totalPixels = width * height;
+
+  for (let i = 0; i < totalPixels; i++) {
     const alpha = maskData[i];
 
-    // threshold tuning (you can tweak this)
-    if (alpha < 0.5) {
-      data[i * 4 + 3] = 0;
+    const pixelIndex = i * 4;
+
+    if (alpha < threshold) {
+      // remove background
+      data[pixelIndex + 3] = 0;
+    } else {
+      // optional: soft edge blending
+      data[pixelIndex + 3] = data[pixelIndex + 3] * alpha;
     }
   }
 
   ctx.putImageData(imageData, 0, 0);
 
-  // ---- output blob ----
+  // ---- export blob ----
   return new Promise((resolve, reject) => {
     canvas.toBlob(blob => {
       if (!blob) {
