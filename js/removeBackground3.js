@@ -65,29 +65,36 @@ export default async function removeBackground(
   // ---- run segmentation (IMPORTANT: use bitmap) ----
   const result = seg.segment(bitmap);
 
-  const mask = result.categoryMask;
-  const maskData = mask.getAsFloat32Array();
-
+  // mask as image (NOT raw array)
+  const mask = result.categoryMask.toCanvasImageSource?.() 
+    || result.categoryMask;
+  
+  const maskCanvas = document.createElement('canvas');
+  maskCanvas.width = width;
+  maskCanvas.height = height;
+  
+  const mctx = maskCanvas.getContext('2d');
+  
+  // draw mask scaled to output size
+  mctx.drawImage(mask, 0, 0, width, height);
+  
+  // get mask pixels
+  const maskData = mctx.getImageData(0, 0, width, height).data;
+  
+  // apply to image
   const imageData = ctx.getImageData(0, 0, width, height);
   const data = imageData.data;
-
-  // ---- apply mask safely ----
-  const totalPixels = width * height;
-
-  for (let i = 0; i < totalPixels; i++) {
-    const alpha = maskData[i];
-
-    const pixelIndex = i * 4;
-
-    if (alpha < threshold) {
-      // remove background
-      data[pixelIndex + 3] = 0;
-    } else {
-      // optional: soft edge blending
-      data[pixelIndex + 3] = data[pixelIndex + 3] * alpha;
+  
+  for (let i = 0; i < width * height; i++) {
+    const alpha = maskData[i * 4]; // red channel
+  
+    const p = i * 4;
+  
+    if (alpha < 128) {
+      data[p + 3] = 0;
     }
   }
-
+  
   ctx.putImageData(imageData, 0, 0);
 
   // ---- export blob ----
