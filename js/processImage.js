@@ -1,4 +1,4 @@
-async function processImage(file, {
+export async function processImage(file, {
   width = 500,
   type = 'image/webp',
   quality = 0.6
