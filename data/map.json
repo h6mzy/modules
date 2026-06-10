@@ -1,1 +1,23 @@
-{ "image": "https://cdn.jsdelivr.net/gh/h6mzy/modules@main/img/sjii_map_2026.webp", "points": [ { "id": "1", "number": 1, "x": 25.3, "y": 41.8, "title": "Main Hall", "description": "Main assembly hall", "photos": [] }, { "id": "2", "number": 2, "x": 58.7, "y": 30.2, "title": "Library", "description": "School library", "photos": [] } ] }
+{
+  "image": "https://cdn.jsdelivr.net/gh/h6mzy/modules@main/img/sjii_map_2026.webp",
+  "points": [
+    {
+      "id": "1",
+      "number": 1,
+      "x": 25.3,
+      "y": 41.8,
+      "title": "Main Hall",
+      "description": "Main assembly hall",
+      "photos": []
+    },
+    {
+      "id": "2",
+      "number": 2,
+      "x": 58.7,
+      "y": 30.2,
+      "title": "Library",
+      "description": "School library",
+      "photos": []
+    }
+  ]
+}
