@@ -1,23 +1,149 @@
 {
-  "image": "https://cdn.jsdelivr.net/gh/h6mzy/modules@main/img/sjii_map_2026.webp",
+  "image": "https://cdn.jsdelivr.net/gh/h6mzy/modules@main/data/map.json",
   "points": [
     {
-      "id": "1",
-      "number": 1,
-      "x": 25.3,
-      "y": 41.8,
-      "title": "Main Hall",
-      "description": "Main assembly hall",
-      "photos": []
+      "title": "Toa Payoh West Entrance",
+      "description": "",
+      "x": 6.189320388349515,
+      "y": 56.26068376068376,
+      "id": "789f5c1c-34b9-47d8-880d-868df469c529",
+      "number": 1
     },
     {
-      "id": "2",
-      "number": 2,
-      "x": 58.7,
-      "y": 30.2,
-      "title": "Library",
-      "description": "School library",
-      "photos": []
+      "title": "Visitor's Carpark",
+      "description": "",
+      "x": 7.524271844660194,
+      "y": 41.30911680911681,
+      "id": "ef5a5970-07ba-4454-a9b3-18831f8ca8b1",
+      "number": 2
+    },
+    {
+      "title": "High School Basketball & Tennis Courts",
+      "description": "",
+      "x": 18.325242718446603,
+      "y": 20.887464387464387,
+      "id": "cc1718f3-0dbd-4202-8989-fd5b6e6b4324",
+      "number": 3
+    },
+    {
+      "title": "La Salle Block",
+      "description": "",
+      "x": 30.461165048543688,
+      "y": 18.881766381766383,
+      "id": "5b716169-5c8b-4d30-b478-fc2d3393adc8",
+      "number": 4
+    },
+    {
+      "title": "High School Science Block",
+      "description": "",
+      "x": 23.90776699029126,
+      "y": 32.00997150997151,
+      "id": "c064ad16-8005-43e0-8f5d-19355c85bcad",
+      "number": 5
+    },
+    {
+      "title": "Khoo Teck Puat Building",
+      "description": "",
+      "x": 32.038834951456316,
+      "y": 32.73931623931624,
+      "id": "97335254-ca78-4c05-95c3-77330b593e66",
+      "number": 6
+    },
+    {
+      "title": "High School Music, Drama Rooms & Canteen",
+      "description": "",
+      "x": 39.68446601941748,
+      "y": 21.98148148148148,
+      "id": "7da7603a-c9b7-4a82-b431-f183a309b66f",
+      "number": 7
+    },
+    {
+      "title": "Solomon Block",
+      "description": "",
+      "x": 47.69417475728155,
+      "y": 32.19230769230769,
+      "id": "176613b8-1c82-4fa7-b7a8-e67736c8a394",
+      "number": 8
+    },
+    {
+      "title": "Wisdom Block",
+      "description": "",
+      "x": 55.70388349514563,
+      "y": 26.175213675213676,
+      "id": "20a3a059-ed34-42d2-bec0-a1e943eee7da",
+      "number": 9
+    },
+    {
+      "title": "Assembly Hall",
+      "description": "",
+      "x": 49.150485436893206,
+      "y": 16.876068376068375,
+      "id": "1c609ccd-7369-4d7b-b0cc-93b6fb77ce26",
+      "number": 10
+    },
+    {
+      "title": "Sanctuary of Devine Love Chapel",
+      "description": "",
+      "x": 55.33980582524271,
+      "y": 13.411680911680913,
+      "id": "1563f87c-d023-4bb2-bd5b-e20f89ff861e",
+      "number": 11
+    },
+    {
+      "title": "Cecilia Block",
+      "description": "",
+      "x": 60.55825242718447,
+      "y": 16.146723646723647,
+      "id": "d33f476a-35b1-4208-abd7-7c0ddeb51045",
+      "number": 12
+    },
+    {
+      "title": "Elementary Pickup/Dropoff",
+      "description": "",
+      "x": 66.86893203883496,
+      "y": 28.363247863247864,
+      "id": "1ffafa54-fcc2-430b-9e36-7c07e01c3fc9",
+      "number": 13
+    },
+    {
+      "title": "Elementary Gabriel Block",
+      "description": "",
+      "x": 67.96116504854369,
+      "y": 20.15811965811966,
+      "id": "566eae66-b61e-4d31-9b79-a9f996263074",
+      "number": 14
+    },
+    {
+      "title": "Elementary Raphael Block",
+      "description": "",
+      "x": 85.55825242718447,
+      "y": 36.02136752136752,
+      "id": "004eff4c-ac23-4c26-81f4-36eeea6526e5",
+      "number": 15
+    },
+    {
+      "title": "Elementary Assembly Hall",
+      "description": "",
+      "x": 95.50970873786407,
+      "y": 41.856125356125354,
+      "id": "ffa16018-e2b7-4e96-a99c-e2406ffe7ca9",
+      "number": 16
+    },
+    {
+      "title": "Lawrence Da Silva Sports Complex",
+      "description": "",
+      "x": 65.16990291262135,
+      "y": 48.42022792022792,
+      "id": "50187efc-50f6-434e-bb2c-f61f34aaf1b0",
+      "number": 17
+    },
+    {
+      "title": "Culture & Language Centre",
+      "description": "",
+      "x": 77.5485436893204,
+      "y": 33.83333333333333,
+      "id": "bf799001-18e2-4e1c-8d37-08078ee1ea4d",
+      "number": 18
     }
   ]
 }
