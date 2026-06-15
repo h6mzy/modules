@@ -50,6 +50,10 @@ const Dialog = (() => {
   }
 
   function getFormData(form) {
+    return Object.fromEntries(new FormData(form));
+  }
+
+  /*function getFormData(form) {
     return Object.fromEntries(
       [...form.elements]
         .filter(el => el.name)
@@ -58,7 +62,7 @@ const Dialog = (() => {
           el.type === 'checkbox' ? el.checked : el.value
         ])
     );
-  }
+  }*/
 
   return { init, open, close };
 })();
